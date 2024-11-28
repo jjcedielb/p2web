@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BonoEntity } from './bono.entity/bono.entity';
 import { BonoService } from './bono.service';
 import { BonoController } from './bono.controller';
-import { UsuarioEntity } from '../usuario/usuario.entity/usuario.entity'; // To handle relationships with Usuario
+import { UsuarioEntity } from '../usuario/usuario.entity/usuario.entity'; 
 
 @Module({
     imports: [
