@@ -1,14 +1,22 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
-import { ClaseModule } from './clase/clase.module';
-import { BonoService } from './bono/bono.service';
-import { BonoController } from './bono/bono.controller';
+import { BonoModule } from './bono/bono.module';
 
 @Module({
-  imports: [UsuarioModule, ClaseModule],
-  controllers: [AppController, BonoController],
-  providers: [AppService, BonoService],
+    imports: [
+        TypeOrmModule.forRoot({
+            type: 'postgres',
+            host: 'localhost',
+            port: 5432,
+            username: 'postgres',
+            password: 'idw',
+            database: 'clases',
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: true,
+        }),
+        UsuarioModule,
+        BonoModule,
+    ],
 })
 export class AppModule {}
