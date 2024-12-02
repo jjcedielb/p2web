@@ -16,7 +16,7 @@ exports.ClaseService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const clase_entity_1 = require("./clase.entity/clase.entity");
+const clase_entity_1 = require("../clase/clase.entity/clase.entity");
 const business_errors_1 = require("../shared/errors/business-errors");
 let ClaseService = class ClaseService {
     constructor(claseRepository) {
@@ -34,6 +34,9 @@ let ClaseService = class ClaseService {
             throw new business_errors_1.BusinessLogicException('La clase con el id dado no existe', business_errors_1.BusinessError.NOT_FOUND);
         }
         return clase;
+    }
+    async findAllClases() {
+        return await this.claseRepository.find({ relations: ['usuario', 'bonos'] });
     }
 };
 exports.ClaseService = ClaseService;

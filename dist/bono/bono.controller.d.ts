@@ -7,5 +7,6 @@ export declare class BonoController {
     createBono(userId: string, bonoDto: BonoDto): Promise<BonoEntity>;
     findBonoByCodigo(bonoId: string): Promise<BonoEntity>;
     findAllBonosByUsuario(userId: string): Promise<BonoEntity[]>;
+    findBonosByClaseCodigo(codigoClase: string): Promise<BonoEntity[]>;
     deleteBono(bonoId: string): Promise<void>;
 }

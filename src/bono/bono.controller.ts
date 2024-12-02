@@ -27,6 +27,11 @@ export class BonoController {
         return await this.bonoService.findAllBonosByUsuario(userId);
     }
 
+    @Get('clase/:codigoClase')
+    async findBonosByClaseCodigo(@Param('codigoClase') codigoClase: string) {
+        return await this.bonoService.findAllBonosByClaseCodigo(codigoClase);
+    }
+
     @Delete(':bonoId')
     @HttpCode(204)
     async deleteBono(@Param('bonoId') bonoId: string) {

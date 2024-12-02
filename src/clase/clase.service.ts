@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ClaseEntity } from 'src/clase/clase.entity/clase.entity';
-import { BusinessError, BusinessLogicException } from 'src/shared/errors/business-errors';
+import { ClaseEntity } from '../clase/clase.entity/clase.entity';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 
 @Injectable()
 export class ClaseService {
@@ -34,5 +33,9 @@ export class ClaseService {
         }
 
         return clase;
+    }
+
+    async findAllClases(): Promise<ClaseEntity[]> {
+        return await this.claseRepository.find({ relations: ['usuario', 'bonos'] });
     }
 }

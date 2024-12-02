@@ -1,10 +1,10 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BonoEntity } from 'src/bono/bono.entity/bono.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
-import { BusinessError, BusinessLogicException } from 'src/shared/errors/business-errors';
+import { BonoEntity } from '../bono/bono.entity/bono.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity/usuario.entity';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
+import { ClaseEntity } from '../clase/clase.entity/clase.entity'
 
 @Injectable()
 export class BonoService {
@@ -13,7 +13,11 @@ export class BonoService {
         private readonly bonoRepository: Repository<BonoEntity>,
 
         @InjectRepository(UsuarioEntity)
-        private readonly usuarioRepository: Repository<UsuarioEntity>
+        private readonly usuarioRepository: Repository<UsuarioEntity>,
+
+        @InjectRepository(ClaseEntity)
+        private readonly claseRepository: Repository<ClaseEntity>
+
     ) {}
 
     async crearBono(bono: BonoEntity, userId: string): Promise<BonoEntity> {
@@ -56,6 +60,19 @@ export class BonoService {
         }
 
         return bono;
+    }
+
+    async findAllBonosByClaseCodigo(codigoClase: string): Promise<BonoEntity[]> {
+        const clase = await this.claseRepository.findOne({ where: { codigo: codigoClase }, relations: ['bonos'] });
+
+        if (!clase) {
+            throw new BusinessLogicException(
+                'La clase con el código dado no existe',
+                BusinessError.NOT_FOUND
+            );
+        }
+
+        return clase.bonos;
     }
 
 

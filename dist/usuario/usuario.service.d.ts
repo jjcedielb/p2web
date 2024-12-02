@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
-import { BonoEntity } from 'src/bono/bono.entity/bono.entity';
+import { UsuarioEntity } from './usuario.entity/usuario.entity';
+import { BonoEntity } from '../bono/bono.entity/bono.entity';
 export declare class UsuarioService {
     private readonly usuarioRepository;
     private readonly bonoRepository;

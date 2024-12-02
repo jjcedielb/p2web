@@ -12,6 +12,7 @@ const usuario_service_1 = require("./usuario.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const usuario_entity_1 = require("./usuario.entity/usuario.entity");
 const bono_entity_1 = require("../bono/bono.entity/bono.entity");
+const usuario_controller_1 = require("./usuario.controller");
 let UsuarioModule = class UsuarioModule {
 };
 exports.UsuarioModule = UsuarioModule;
@@ -19,6 +20,7 @@ exports.UsuarioModule = UsuarioModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([usuario_entity_1.UsuarioEntity, bono_entity_1.BonoEntity])],
         providers: [usuario_service_1.UsuarioService],
+        controllers: [usuario_controller_1.UsuarioController],
     })
 ], UsuarioModule);
 //# sourceMappingURL=usuario.module.js.map

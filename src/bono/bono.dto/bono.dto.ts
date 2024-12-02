@@ -9,6 +9,7 @@ export class BonoDto {
   @IsNumber()
   @Min(0)
   @IsNotEmpty()
+  
   readonly calificacion: number;
 
   @IsString()

@@ -1,5 +1,5 @@
-import { ClaseEntity } from 'src/clase/clase.entity/clase.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
+import { ClaseEntity } from '../../clase/clase.entity/clase.entity';
+import { UsuarioEntity } from '../../usuario/usuario.entity/usuario.entity';
 export declare class BonoEntity {
     id: string;
     monto: number;

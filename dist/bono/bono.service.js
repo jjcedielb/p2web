@@ -16,13 +16,15 @@ exports.BonoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const bono_entity_1 = require("./bono.entity/bono.entity");
+const bono_entity_1 = require("../bono/bono.entity/bono.entity");
 const usuario_entity_1 = require("../usuario/usuario.entity/usuario.entity");
 const business_errors_1 = require("../shared/errors/business-errors");
+const clase_entity_1 = require("../clase/clase.entity/clase.entity");
 let BonoService = class BonoService {
-    constructor(bonoRepository, usuarioRepository) {
+    constructor(bonoRepository, usuarioRepository, claseRepository) {
         this.bonoRepository = bonoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.claseRepository = claseRepository;
     }
     async crearBono(bono, userId) {
         if (!bono.monto || bono.monto <= 0) {
@@ -44,6 +46,13 @@ let BonoService = class BonoService {
             throw new business_errors_1.BusinessLogicException('El bono con el id dado no existe', business_errors_1.BusinessError.NOT_FOUND);
         }
         return bono;
+    }
+    async findAllBonosByClaseCodigo(codigoClase) {
+        const clase = await this.claseRepository.findOne({ where: { codigo: codigoClase }, relations: ['bonos'] });
+        if (!clase) {
+            throw new business_errors_1.BusinessLogicException('La clase con el código dado no existe', business_errors_1.BusinessError.NOT_FOUND);
+        }
+        return clase.bonos;
     }
     async findAllBonosByUsuario(userId) {
         const usuario = await this.usuarioRepository.findOne({ where: { id: userId }, relations: ['bonos'] });
@@ -68,7 +77,9 @@ exports.BonoService = BonoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(bono_entity_1.BonoEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(usuario_entity_1.UsuarioEntity)),
+    __param(2, (0, typeorm_1.InjectRepository)(clase_entity_1.ClaseEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository])
 ], BonoService);
 //# sourceMappingURL=bono.service.js.map

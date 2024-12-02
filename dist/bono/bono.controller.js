@@ -33,6 +33,9 @@ let BonoController = class BonoController {
     async findAllBonosByUsuario(userId) {
         return await this.bonoService.findAllBonosByUsuario(userId);
     }
+    async findBonosByClaseCodigo(codigoClase) {
+        return await this.bonoService.findAllBonosByClaseCodigo(codigoClase);
+    }
     async deleteBono(bonoId) {
         await this.bonoService.deleteBono(bonoId);
     }
@@ -60,6 +63,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], BonoController.prototype, "findAllBonosByUsuario", null);
+__decorate([
+    (0, common_1.Get)('clase/:codigoClase'),
+    __param(0, (0, common_1.Param)('codigoClase')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BonoController.prototype, "findBonosByClaseCodigo", null);
 __decorate([
     (0, common_1.Delete)(':bonoId'),
     (0, common_1.HttpCode)(204),

@@ -1,10 +1,9 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
-import { BonoEntity } from 'src/bono/bono.entity/bono.entity';
-import { BusinessError, BusinessLogicException } from 'src/shared/errors/business-errors';
+import { UsuarioEntity } from './usuario.entity/usuario.entity';
+import { BonoEntity } from '../bono/bono.entity/bono.entity';
+import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 
 @Injectable()
 export class UsuarioService {
@@ -29,7 +28,7 @@ export class UsuarioService {
         } else if (usuario.rol === 'Decana') {
             if (usuario.numeroExtension.toString().length !== 8) {
                 throw new BusinessLogicException(
-                    'El numero de extension debe ser mayor a 8 digitos',
+                    'El numero de extension debe ser de 8 digitos',
                     BusinessError.PRECONDITION_FAILED
                 );
             }

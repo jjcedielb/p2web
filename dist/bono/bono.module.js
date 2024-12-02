@@ -13,13 +13,14 @@ const bono_entity_1 = require("./bono.entity/bono.entity");
 const bono_service_1 = require("./bono.service");
 const bono_controller_1 = require("./bono.controller");
 const usuario_entity_1 = require("../usuario/usuario.entity/usuario.entity");
+const clase_entity_1 = require("../clase/clase.entity/clase.entity");
 let BonoModule = class BonoModule {
 };
 exports.BonoModule = BonoModule;
 exports.BonoModule = BonoModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([bono_entity_1.BonoEntity, usuario_entity_1.UsuarioEntity]),
+            typeorm_1.TypeOrmModule.forFeature([bono_entity_1.BonoEntity, usuario_entity_1.UsuarioEntity, clase_entity_1.ClaseEntity]),
         ],
         providers: [bono_service_1.BonoService],
         controllers: [bono_controller_1.BonoController],

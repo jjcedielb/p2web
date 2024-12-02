@@ -1,6 +1,11 @@
-export declare function BusinessLogicException(message: string, type: number): void;
 export declare enum BusinessError {
-    NOT_FOUND = 0,
-    PRECONDITION_FAILED = 1,
-    BAD_REQUEST = 2
+    PRECONDITION_FAILED = 412,
+    NOT_FOUND = 404,
+    INTERNAL_ERROR = 500,
+    BAD_REQUEST = 501
+}
+export declare class BusinessLogicException extends Error {
+    message: string;
+    type: BusinessError;
+    constructor(message: string, type: BusinessError);
 }

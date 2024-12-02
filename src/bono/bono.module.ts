@@ -4,10 +4,11 @@ import { BonoEntity } from './bono.entity/bono.entity';
 import { BonoService } from './bono.service';
 import { BonoController } from './bono.controller';
 import { UsuarioEntity } from '../usuario/usuario.entity/usuario.entity'; 
+import { ClaseEntity } from 'src/clase/clase.entity/clase.entity';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([BonoEntity, UsuarioEntity]), 
+        TypeOrmModule.forFeature([BonoEntity, UsuarioEntity, ClaseEntity]), 
     ],
     providers: [BonoService], 
     controllers: [BonoController], 

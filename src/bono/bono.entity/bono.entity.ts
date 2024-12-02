@@ -1,5 +1,5 @@
-import { ClaseEntity } from 'src/clase/clase.entity/clase.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
+import { ClaseEntity } from '../../clase/clase.entity/clase.entity';
+import { UsuarioEntity } from '../../usuario/usuario.entity/usuario.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -10,7 +10,7 @@ export class BonoEntity {
    @Column()
    monto: number;
 
-   @Column()
+   @Column('float', { default: 0 })
    calificacion: number;
 
    @Column()

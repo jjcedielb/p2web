@@ -33,7 +33,7 @@ let UsuarioService = class UsuarioService {
         }
         else if (usuario.rol === 'Decana') {
             if (usuario.numeroExtension.toString().length !== 8) {
-                throw new business_errors_1.BusinessLogicException('El numero de extension debe ser mayor a 8 digitos', business_errors_1.BusinessError.PRECONDITION_FAILED);
+                throw new business_errors_1.BusinessLogicException('El numero de extension debe ser de 8 digitos', business_errors_1.BusinessError.PRECONDITION_FAILED);
             }
         }
         return await this.usuarioRepository.save(usuario);
